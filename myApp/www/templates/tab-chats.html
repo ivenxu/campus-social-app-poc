@@ -1,9 +1,9 @@
 <ion-view view-title="留言板">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>
+      <ion-item class="item-remove-animate" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+        <div class="user-summary-bar item-avatar">
+          <img ng-src="{{chat.face}}">
           <span>{{chat.name}}</span>
           <span>  </span>
            <img class='sex-sign-icon' ng-src="{{chat.sex=='m'?'img/male-sign.jpg':'img/female-sign.jpg'}}">          
@@ -11,7 +11,7 @@
           <span class="{{chat.sex=='m'?'font-color-light-blue':'font-color-pink'}}">{{chat.age}}</span>
           <span>  </span>
           <span>{{chat.occupation}}</span>
-        </h2>
+        </div>
         <div class="card">
           <div class="item item-text-wrap {{chat.contentImg!=null?'item-thumbnail-left':''}} ">
             <img ng-if="chat.contentImg!=null" ng-src="{{chat.contentImg}}">           

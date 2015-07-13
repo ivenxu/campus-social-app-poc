@@ -9,4 +9,7 @@
 .font-color-pink{
 	color: #ef473a;
 }
+div.user-summary-bar{
+	min-height: 32px;
+}
 
