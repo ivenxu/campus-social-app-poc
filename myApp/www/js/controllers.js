@@ -24,7 +24,22 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('ChatThreadCtrl', function($scope, $stateParams, Chats) {
+  var chats = Chats.all();
+  var messageOptions = new Array(chats.length);
+  for (var i = 0; i < chats.length; i++) {
+    var chat = chats[i];
+    var message = {content:chat.contentImg==null ? '<p>' + chat.lastText + '</p>' : '<img src="' + chat.contentImg + '"></img>'};
+    messageOptions[i] = message;
+  }
+
+  $scope.model = {
+    chat: Chats.get($stateParams.chatId),
+    messages: messageOptions
+  };
+})
+
+.controller('PostDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
