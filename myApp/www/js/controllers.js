@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['baiduMap'])
 
 .controller('DashCtrl', function($scope) {})
 
@@ -47,4 +47,23 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+          var longitude = 121.919733;
+        var latitude = 30.88761;
+        $scope.mapOptions = {
+            center: {
+                longitude: longitude,
+                latitude: latitude
+            },
+            zoom: 15,
+            city: '上海',
+            markers: [{
+                longitude: longitude,
+                latitude: latitude,
+                icon: 'http://img.coolwp.com/wp-content/uploads/2015/04/48-map-marker.png',
+                width: 48,
+                height: 48,
+                title: '在临港',
+                content: '海洋小区'
+            }]
+        };
 });
