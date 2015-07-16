@@ -47,23 +47,44 @@ angular.module('starter.controllers', ['baiduMap'])
   $scope.settings = {
     enableFriends: true
   };
-          var longitude = 121.919733;
-        var latitude = 30.88761;
-        $scope.mapOptions = {
-            center: {
-                longitude: longitude,
-                latitude: latitude
-            },
-            zoom: 15,
-            city: '上海',
-            markers: [{
-                longitude: longitude,
-                latitude: latitude,
-                icon: 'http://img.coolwp.com/wp-content/uploads/2015/04/48-map-marker.png',
-                width: 48,
-                height: 48,
-                title: '在临港',
-                content: '海洋小区'
-            }]
-        };
+  var longitude = 121.466609;
+  var latitude = 31.236354;
+  $scope.mapOptions = {
+      center: {
+          longitude: longitude,
+          latitude: latitude
+      },
+      zoom: 15,
+      city: '上海',
+      markers: [{
+          longitude: longitude,
+          latitude: latitude,
+          icon: 'http://img.coolwp.com/wp-content/uploads/2015/04/48-map-marker.png',
+          width: 48,
+          height: 48,
+          title: '现在的',
+          content: '海洋小区'
+      }]
+  };
+  document.addEventListener("deviceready", function(){
+    navigator.geolocation.getCurrentPosition(function(position){
+      // alert('Latitude: '          + position.coords.latitude          + '\n' +
+      //     'Longitude: '         + position.coords.longitude         + '\n' +
+      //     'Altitude: '          + position.coords.altitude          + '\n' +
+      //     'Accuracy: '          + position.coords.accuracy          + '\n' +
+      //     'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+      //     'Heading: '           + position.coords.heading           + '\n' +
+      //     'Speed: '             + position.coords.speed             + '\n' +
+      //     'Timestamp: '         + position.timestamp                + '\n');
+      $scope.mapOptions.markers[0].longitude = position.coords.longitude;
+      $scope.mapOptions.markers[0].latitude = position.coords.latitude;
+      $scope.mapOptions.center.longitude = position.coords.longitude;
+      $scope.mapOptions.center.latitude = position.coords.latitude;
+    },
+    function(error){
+      alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+    });
+  }, false);
+
 });
